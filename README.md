@@ -2,6 +2,8 @@
 
 Sitio bilingüe de Aztec Urban MX, preparado para Next.js en Vercel. Repositorio: https://github.com/MaycollJaramillo01/AZTEC-URBAN-MX. Configuración y operación del despliegue en `docs/DEPLOY.md`.
 
+Sitio en Vercel: https://aztec-urban-mx.vercel.app. Inglés en `/en` y español en `/es`. Se mantiene sin indexación durante la revisión del contenido.
+
 ## Empezar
 
 Requiere Node.js 20.9 o superior. Probado con Node 22.20.0. Las dependencias y sus versiones exactas están en `package.json` y `package-lock.json`.

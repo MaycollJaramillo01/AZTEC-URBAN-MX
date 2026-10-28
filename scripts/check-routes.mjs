@@ -21,7 +21,8 @@ for (const lang of ["en", "es"])
     const response = await fetch(origin + route);
     assert.equal(response.status, 200, route);
     const html = await response.text();
-    assert.ok(html.includes(`<html lang="${lang}"`), `SSR language: ${route}`);
+    const documentLanguage = html.match(/<html[^>]* lang="([^"]+)"/)?.[1];
+    assert.equal(documentLanguage, lang, `SSR language: ${route}`);
     assert.equal((html.match(/<h1[ >]/g) || []).length, 1, `One H1: ${route}`);
     assert.ok(
       /<meta name="robots" content="noindex, nofollow"/.test(html),

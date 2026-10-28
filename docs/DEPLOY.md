@@ -2,6 +2,8 @@
 
 El usuario solicitó subir el proyecto a `MaycollJaramillo01/AZTEC-URBAN-MX` y desplegarlo en Vercel. La raíz del repositorio es la aplicación Next.js; no se necesita una subcarpeta de proyecto.
 
+URL de producción: https://aztec-urban-mx.vercel.app. La raíz redirige a `/en`; español está en `/es`. El repositorio GitHub está conectado al proyecto Vercel.
+
 ## Configuración
 
 - Proyecto Vercel: `aztec-urban-mx`, dentro de `maycolljaramillo01s-projects`.
