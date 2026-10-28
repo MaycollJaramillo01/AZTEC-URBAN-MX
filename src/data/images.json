@@ -1,0 +1,282 @@
+[
+  {
+    "id": "grill-board",
+    "localPath": "/images/aztec/grill-board-640.webp",
+    "width": 640,
+    "height": 427,
+    "variants": [
+      {
+        "width": 320,
+        "height": 214,
+        "webp": "/images/aztec/grill-board-320.webp",
+        "jpeg": "/images/aztec/grill-board-320.jpg",
+        "bytes": 23452
+      },
+      {
+        "width": 640,
+        "height": 427,
+        "webp": "/images/aztec/grill-board-640.webp",
+        "jpeg": "/images/aztec/grill-board-640.jpg",
+        "bytes": 65730
+      }
+    ],
+    "sourceAccount": "aztecurbanmx",
+    "sourcePostUrl": "https://www.instagram.com/aztecurbanmx/p/DTDcu0jD3f8/",
+    "originalFile": "imagenes/aztecurbanmx/aztecurbanmx-02.jpg",
+    "sourceSha256": "a582933468f5d644dde6f7c5f940d45b36e9521082c129a4ec97a7f35ca3b4df",
+    "category": "food",
+    "locationId": null,
+    "verifiedDishName": null,
+    "altEn": "Grilled meat and purple cabbage on an Aztec wooden board",
+    "altEs": "Carne a la parrilla y col morada sobre una tabla de Aztec",
+    "focalPoint": "50% 50%",
+    "publicationApproval": "pending_client_review",
+    "approvedForPublication": false,
+    "sourceKind": "photo"
+  },
+  {
+    "id": "tacos-board",
+    "localPath": "/images/aztec/tacos-board-640.webp",
+    "width": 640,
+    "height": 360,
+    "variants": [
+      {
+        "width": 320,
+        "height": 180,
+        "webp": "/images/aztec/tacos-board-320.webp",
+        "jpeg": "/images/aztec/tacos-board-320.jpg",
+        "bytes": 16312
+      },
+      {
+        "width": 640,
+        "height": 360,
+        "webp": "/images/aztec/tacos-board-640.webp",
+        "jpeg": "/images/aztec/tacos-board-640.jpg",
+        "bytes": 43470
+      }
+    ],
+    "sourceAccount": "aztecurbanmxtyler",
+    "sourcePostUrl": "https://www.instagram.com/aztecurbanmxtyler/p/DcmCq2tIfr2/",
+    "originalFile": "imagenes/aztecurbanmxtyler/aztecurbanmxtyler-08.jpg",
+    "sourceSha256": "2c56806bb4f7ab81fbf0973f5c4b348a9d27bc0144c9cccd80e0dae1a0e738b3",
+    "category": "food",
+    "locationId": null,
+    "verifiedDishName": null,
+    "altEn": "Tacos topped with purple cabbage on a wooden serving board",
+    "altEs": "Tacos con col morada sobre una tabla de madera",
+    "focalPoint": "50% 50%",
+    "publicationApproval": "pending_client_review",
+    "approvedForPublication": false,
+    "sourceKind": "photo"
+  },
+  {
+    "id": "table-flavors",
+    "localPath": "/images/aztec/table-flavors-539.webp",
+    "width": 539,
+    "height": 640,
+    "variants": [
+      {
+        "width": 320,
+        "height": 380,
+        "webp": "/images/aztec/table-flavors-320.webp",
+        "jpeg": "/images/aztec/table-flavors-320.jpg",
+        "bytes": 15286
+      },
+      {
+        "width": 539,
+        "height": 640,
+        "webp": "/images/aztec/table-flavors-539.webp",
+        "jpeg": "/images/aztec/table-flavors-539.jpg",
+        "bytes": 27982
+      }
+    ],
+    "sourceAccount": "aztecurbanmx",
+    "sourcePostUrl": "https://www.instagram.com/aztecurbanmx/p/DSvc3MgDyJp/",
+    "originalFile": "imagenes/aztecurbanmx/aztecurbanmx-06.jpg",
+    "sourceSha256": "6eea495c26039d5cbb6b7d9b337e3c6107e8fe566e0eb3b9223f1b44305b3921",
+    "category": "food",
+    "locationId": null,
+    "verifiedDishName": null,
+    "altEn": "A colorful plate of food with a red drink on the table",
+    "altEs": "Un plato de comida y una bebida roja sobre la mesa",
+    "focalPoint": "50% 65%",
+    "publicationApproval": "pending_client_review",
+    "approvedForPublication": false,
+    "sourceKind": "photo"
+  },
+  {
+    "id": "green-cocktail",
+    "localPath": "/images/aztec/green-cocktail-512.webp",
+    "width": 512,
+    "height": 640,
+    "variants": [
+      {
+        "width": 320,
+        "height": 400,
+        "webp": "/images/aztec/green-cocktail-320.webp",
+        "jpeg": "/images/aztec/green-cocktail-320.jpg",
+        "bytes": 10202
+      },
+      {
+        "width": 512,
+        "height": 640,
+        "webp": "/images/aztec/green-cocktail-512.webp",
+        "jpeg": "/images/aztec/green-cocktail-512.jpg",
+        "bytes": 18426
+      }
+    ],
+    "sourceAccount": "aztecurbanmx",
+    "sourcePostUrl": "https://www.instagram.com/aztecurbanmx/p/DS2nJLoATNx/",
+    "originalFile": "imagenes/aztecurbanmx/aztecurbanmx-05.jpg",
+    "sourceSha256": "960de3c19576835c626e15024840630ea57d4c9fbff909cb8d12d9b00e3ab63f",
+    "category": "drinks",
+    "locationId": null,
+    "verifiedDishName": null,
+    "altEn": "Green cocktail in a curved glass with a purple flower garnish",
+    "altEs": "Coctel verde en una copa curva con una flor morada",
+    "focalPoint": "50% 50%",
+    "publicationApproval": "pending_client_review",
+    "approvedForPublication": false,
+    "sourceKind": "photo"
+  },
+  {
+    "id": "aztec-interior",
+    "localPath": "/images/aztec/aztec-interior-640.webp",
+    "width": 640,
+    "height": 427,
+    "variants": [
+      {
+        "width": 320,
+        "height": 214,
+        "webp": "/images/aztec/aztec-interior-320.webp",
+        "jpeg": "/images/aztec/aztec-interior-320.jpg",
+        "bytes": 20542
+      },
+      {
+        "width": 640,
+        "height": 427,
+        "webp": "/images/aztec/aztec-interior-640.webp",
+        "jpeg": "/images/aztec/aztec-interior-640.jpg",
+        "bytes": 56730
+      }
+    ],
+    "sourceAccount": "aztecurbanmx",
+    "sourcePostUrl": "https://www.instagram.com/aztecurbanmx/p/DSlSfGHjJ3W/",
+    "originalFile": "imagenes/aztecurbanmx/aztecurbanmx-08.jpg",
+    "sourceSha256": "519a77986eb2a70695cb346ce1ffa1a9a826d7ecc3af110ae579809dbba19269",
+    "category": "atmosphere",
+    "locationId": null,
+    "verifiedDishName": null,
+    "altEn": "Aztec restaurant interior with colorful lighting, tables and a bar",
+    "altEs": "Interior de Aztec con iluminación de colores, mesas y barra",
+    "focalPoint": "50% 50%",
+    "publicationApproval": "pending_client_review",
+    "approvedForPublication": false,
+    "sourceKind": "photo"
+  },
+  {
+    "id": "cocktail-glasses",
+    "localPath": "/images/aztec/cocktail-glasses-360.webp",
+    "width": 360,
+    "height": 640,
+    "variants": [
+      {
+        "width": 320,
+        "height": 569,
+        "webp": "/images/aztec/cocktail-glasses-320.webp",
+        "jpeg": "/images/aztec/cocktail-glasses-320.jpg",
+        "bytes": 30230
+      },
+      {
+        "width": 360,
+        "height": 640,
+        "webp": "/images/aztec/cocktail-glasses-360.webp",
+        "jpeg": "/images/aztec/cocktail-glasses-360.jpg",
+        "bytes": 34124
+      }
+    ],
+    "sourceAccount": "aztecurbanmxtyler",
+    "sourcePostUrl": "https://www.instagram.com/aztecurbanmxtyler/reel/DcWyS-VIY0L/",
+    "originalFile": "imagenes/aztecurbanmxtyler/aztecurbanmxtyler-10.jpg",
+    "sourceSha256": "ba340228dc4de80a2d0a5b5cb112f030ce9ce695edf53a5ca0df7e73e98f18db",
+    "category": "drinks",
+    "locationId": null,
+    "verifiedDishName": null,
+    "altEn": "Cocktail glasses displayed above colorful ceramic cups",
+    "altEs": "Copas de coctel sobre vasos de cerámica de colores",
+    "focalPoint": "50% 50%",
+    "publicationApproval": "pending_client_review",
+    "approvedForPublication": false,
+    "sourceKind": "reel_thumbnail"
+  },
+  {
+    "id": "cocktail-pour",
+    "localPath": "/images/aztec/cocktail-pour-360.webp",
+    "width": 360,
+    "height": 640,
+    "variants": [
+      {
+        "width": 320,
+        "height": 569,
+        "webp": "/images/aztec/cocktail-pour-320.webp",
+        "jpeg": "/images/aztec/cocktail-pour-320.jpg",
+        "bytes": 16536
+      },
+      {
+        "width": 360,
+        "height": 640,
+        "webp": "/images/aztec/cocktail-pour-360.webp",
+        "jpeg": "/images/aztec/cocktail-pour-360.jpg",
+        "bytes": 19424
+      }
+    ],
+    "sourceAccount": "aztecurbanmxtyler",
+    "sourcePostUrl": "https://www.instagram.com/aztecurbanmxtyler/reel/DcHOTuQoLUj/",
+    "originalFile": "imagenes/aztecurbanmxtyler/aztecurbanmxtyler-12.jpg",
+    "sourceSha256": "d7224e56e2be71d35d7b0813ce7a345a6285ff312c9c3d1bc2cd989217e50bf5",
+    "category": "drinks",
+    "locationId": null,
+    "verifiedDishName": null,
+    "altEn": "A drink being poured into a cut-glass cocktail glass",
+    "altEs": "Una bebida servida en una copa de cristal tallado",
+    "focalPoint": "50% 55%",
+    "publicationApproval": "pending_client_review",
+    "approvedForPublication": false,
+    "sourceKind": "reel_thumbnail"
+  },
+  {
+    "id": "grilled-seafood",
+    "localPath": "/images/aztec/grilled-seafood-480.webp",
+    "width": 480,
+    "height": 640,
+    "variants": [
+      {
+        "width": 320,
+        "height": 427,
+        "webp": "/images/aztec/grilled-seafood-320.webp",
+        "jpeg": "/images/aztec/grilled-seafood-320.jpg",
+        "bytes": 45214
+      },
+      {
+        "width": 480,
+        "height": 640,
+        "webp": "/images/aztec/grilled-seafood-480.webp",
+        "jpeg": "/images/aztec/grilled-seafood-480.jpg",
+        "bytes": 81880
+      }
+    ],
+    "sourceAccount": "aztecurban2127",
+    "sourcePostUrl": "https://www.instagram.com/aztecurban2127/p/DdhR1nyp81L/",
+    "originalFile": "imagenes/aztecurban2127/aztecurban2127-03.jpg",
+    "sourceSha256": "6a7f37149b1c8eda72d38d987b776f46f0b54e6a5be0e890ae53a72dfb07c738",
+    "category": "food",
+    "locationId": null,
+    "verifiedDishName": null,
+    "altEn": "Grilled octopus with lime; the original photo reads Grilled Octopus",
+    "altEs": "Pulpo a la parrilla con limón; la foto original dice Grilled Octopus",
+    "focalPoint": "50% 50%",
+    "publicationApproval": "pending_client_review",
+    "approvedForPublication": false,
+    "sourceKind": "photo"
+  }
+]

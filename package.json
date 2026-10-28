@@ -1,0 +1,41 @@
+{
+  "name": "aztec-urban-mx",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "test:routes": "node scripts/check-routes.mjs",
+    "smtp:verify": "tsx scripts/verify-smtp.ts",
+    "assets": "node scripts/prepare-assets.mjs",
+    "validate": "npm run lint && npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "@fontsource/barlow-condensed": "5.3.0",
+    "@fontsource/dm-sans": "5.3.0",
+    "@phosphor-icons/react": "2.1.10",
+    "next": "16.4.3",
+    "nodemailer": "10.2.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@next/env": "16.4.3",
+    "@types/node": "26.6.5",
+    "@types/nodemailer": "8.0.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.3",
+    "sharp": "0.35.5",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3"
+  }
+}
