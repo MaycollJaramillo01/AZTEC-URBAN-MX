@@ -51,7 +51,7 @@ Las pruebas automatizadas generan el MIME en memoria y sustituyen la entrega por
 
 El captcha es nativo: `GET /api/careers` entrega una suma sencilla y un token firmado con HMAC-SHA256 que caduca a los 30 minutos; la respuesta nunca viaja en claro. Cada desafío resuelto se acepta una sola vez por proceso. No usa servicios de terceros, cookies ni scripts externos. Se suman el campo antispam, la comprobación de origen y el mismo límite de cinco intentos en quince minutos.
 
-Configurar `CAPTCHA_SECRET` (32 caracteres aleatorios o más) en `.env.local` y en Vercel. Sin él, cada proceso genera su propia clave: funciona en local, pero en Vercel otra instancia puede rechazar el desafío y pedir una nueva respuesta. Se recomienda una regla WAF equivalente a la del contacto para `POST /api/careers`.
+`CAPTCHA_SECRET` (32 caracteres aleatorios o más) está configurado como variable sensible en Production de Vercel; en local es opcional. Sin él, cada proceso genera su propia clave: funciona en local, pero en Vercel otra instancia podría rechazar el desafío y pedir una nueva respuesta. La regla WAF `Careers form limit` aplica a `POST /api/careers` el mismo límite que al contacto: cinco solicitudes por IP en 600 segundos.
 
 ## Límite de intentos
 

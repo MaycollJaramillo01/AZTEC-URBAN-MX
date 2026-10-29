@@ -18,7 +18,7 @@ Configurar en Production: `CONTACT_FORM_ENABLED`, `SMTP_HOST`, `SMTP_PORT`, `SMT
 
 El formulario usa Microsoft 365 con STARTTLS. Los campos están habilitados solo cuando existe configuración completa; éxito significa aceptación SMTP, no una garantía de entrega en bandeja. No se enviaron mensajes de prueba reales durante las comprobaciones.
 
-La regla WAF `Contact form limit` está publicada: cinco POST a `/api/contact` por IP en una ventana de 600 segundos. Vercel cuenta por región; además existe un límite de aplicación por proceso. Falta una regla equivalente para `/api/careers` (formulario de empleo). No compartir los secretos SMTP con builds de forks ni añadirlos al código cliente.
+La regla WAF `Contact form limit` está publicada: cinco POST a `/api/contact` por IP en una ventana de 600 segundos. Vercel cuenta por región; además existe un límite de aplicación por proceso. La regla `Careers form limit` aplica el mismo límite a `POST /api/careers` (formulario de empleo). No compartir los secretos SMTP con builds de forks ni añadirlos al código cliente.
 
 ## Indexación
 
