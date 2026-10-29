@@ -9,10 +9,19 @@ export const pageSlugs = [
   "locations/fifth-street",
   "story",
   "gallery",
+  "careers",
   "contact",
   "privacy",
 ] as const;
 export type PageSlug = (typeof pageSlugs)[number];
+export const navSlugs = [
+  "menu",
+  "locations",
+  "story",
+  "gallery",
+  "careers",
+  "contact",
+] as const;
 export function isLocale(value: string): value is Locale {
   return value === "en" || value === "es";
 }
@@ -29,6 +38,7 @@ const en = {
     locations: "Locations",
     story: "Our story",
     gallery: "Gallery",
+    careers: "Careers",
     contact: "Contact",
     find: "Find your Aztec",
     home: "Home",
@@ -194,9 +204,12 @@ const en = {
     contactTitle: "Contacting us",
     contactBody:
       "When available, the contact form sends your name, email address, message, optional Broadway location, language, and contact consent through Microsoft 365 to our contact inbox. These details are used to respond, not to subscribe you to marketing. The website does not save message contents in a database or browser storage. The server temporarily processes a salted hash of the connection address in memory to limit repeated submissions; it is not stored in a database. Email storage and retention depend on the email provider and inbox operator and must be confirmed before public launch. If the form is unavailable, you can email or call us directly. For privacy questions, contact info@aztecmx.com. Please avoid sending sensitive information.",
+    careersTitle: "Job applications",
+    careersBody:
+      "When available, the careers form sends your name, email address, phone number, area and location of interest, optional message, the CV you attach, language, and application consent through Microsoft 365 to our contact inbox, only to review your application. The website does not save applications or CV files in a database, file storage, or browser storage; the file is held in server memory only while the email is sent. The security check is generated and verified by this website’s own server, without cookies or third-party services. The same in-memory limit on repeated submissions applies. Please do not include sensitive information such as your Social Security number, bank details, or health information. How long applications are kept depends on the inbox operator and must be confirmed before public launch. To ask about or withdraw your application, contact info@aztecmx.com.",
     hostingTitle: "Website delivery",
     hostingBody:
-      "This website is hosted on Vercel. The hosting infrastructure processes connection details such as IP address and request time to deliver pages and protect the contact endpoint from repeated requests. The responsible operator must confirm applicable hosting and email retention practices before the final public launch.",
+      "This website is hosted on Vercel. The hosting infrastructure processes connection details such as IP address and request time to deliver pages and protect the contact and careers forms from repeated requests. The responsible operator must confirm applicable hosting and email retention practices before the final public launch.",
   },
   meta: {
     home: "Aztec Urban MX | Mexican Food & Cocktails in Tyler, TX",
@@ -206,6 +219,7 @@ const en = {
     locations: "Locations in Tyler",
     story: "Our story",
     gallery: "Food, Drinks & Atmosphere",
+    careers: "Careers",
     contact: "Contact",
     privacy: "Privacy",
     future: "5th Street | Coming soon",
@@ -224,6 +238,7 @@ const es: Dictionary = {
     locations: "Ubicaciones",
     story: "Nuestra historia",
     gallery: "Galería",
+    careers: "Empleo",
     contact: "Contacto",
     find: "Encuentra tu Aztec",
     home: "Inicio",
@@ -393,9 +408,12 @@ const es: Dictionary = {
     contactTitle: "Al contactarnos",
     contactBody:
       "Cuando está disponible, el formulario envía tu nombre, correo, mensaje, sucursal de Broadway opcional, idioma y consentimiento de contacto mediante Microsoft 365 a la bandeja de contacto. Estos datos se usan para responder, sin suscribirte a marketing. El sitio no guarda los mensajes en una base de datos ni en el almacenamiento del navegador. Para limitar envíos repetidos el servidor procesa temporalmente en memoria un hash de la dirección de conexión con un valor aleatorio; no se guarda en una base de datos. El almacenamiento y la conservación del correo dependen del proveedor y del responsable de la bandeja y se deben confirmar antes del lanzamiento público. Si el formulario no está disponible, puedes escribirnos o llamarnos directamente. Para preguntas sobre privacidad, contacta a info@aztecmx.com. Evita enviar información sensible.",
+    careersTitle: "Solicitudes de empleo",
+    careersBody:
+      "Cuando está disponible, el formulario de empleo envía tu nombre, correo, teléfono, área y sucursal de interés, mensaje opcional, el CV que adjuntas, idioma y consentimiento de solicitud mediante Microsoft 365 a la bandeja de contacto, solo para revisar tu solicitud. El sitio no guarda solicitudes ni archivos de CV en una base de datos, almacenamiento de archivos ni en el navegador; el archivo permanece en la memoria del servidor solo mientras se envía el correo. La verificación de seguridad la genera y comprueba el propio servidor del sitio, sin cookies ni servicios de terceros. Se aplica el mismo límite en memoria para envíos repetidos. No incluyas información sensible como tu número de Seguro Social, datos bancarios o de salud. El tiempo de conservación de las solicitudes depende del responsable de la bandeja y se debe confirmar antes del lanzamiento público. Para consultar o retirar tu solicitud, escribe a info@aztecmx.com.",
     hostingTitle: "Entrega del sitio web",
     hostingBody:
-      "Este sitio se aloja en Vercel. La infraestructura de alojamiento procesa datos de conexión, como dirección IP y hora de solicitud, para servir las páginas y proteger el formulario frente a solicitudes repetidas. El responsable del sitio debe confirmar los plazos de conservación del alojamiento y el correo antes del lanzamiento público definitivo.",
+      "Este sitio se aloja en Vercel. La infraestructura de alojamiento procesa datos de conexión, como dirección IP y hora de solicitud, para servir las páginas y proteger los formularios de contacto y empleo frente a solicitudes repetidas. El responsable del sitio debe confirmar los plazos de conservación del alojamiento y el correo antes del lanzamiento público definitivo.",
   },
   meta: {
     home: "Aztec Urban MX | Comida mexicana y cocteles en Tyler, TX",
@@ -405,6 +423,7 @@ const es: Dictionary = {
     locations: "Ubicaciones en Tyler",
     story: "Nuestra historia",
     gallery: "Comida, bebidas y ambiente",
+    careers: "Trabaja con nosotros",
     contact: "Contacto",
     privacy: "Privacidad",
     future: "5th Street | Próximamente",

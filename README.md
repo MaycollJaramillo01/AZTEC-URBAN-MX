@@ -27,7 +27,7 @@ No ejecutar `dev` y `start` en el mismo puerto. La vista previa se limita a la i
 
 ## Rutas
 
-Las diez páginas existen bajo `/en` y `/es`: inicio, `menu`, `locations`, `locations/broadway-7918`, `locations/broadway-2127`, `locations/fifth-street`, `story`, `gallery`, `contact` y `privacy`. Los slugs se mantienen iguales entre idiomas; se traducen contenido, navegación, controles, alternativas de imagen y metadatos. El documento HTML se sirve con el idioma correcto. El selector EN/ES conserva la ruta y la consulta de sucursal.
+Las once páginas existen bajo `/en` y `/es`: inicio, `menu`, `locations`, `locations/broadway-7918`, `locations/broadway-2127`, `locations/fifth-street`, `story`, `gallery`, `careers`, `contact` y `privacy`. Los slugs se mantienen iguales entre idiomas; se traducen contenido, navegación, controles, alternativas de imagen y metadatos. El documento HTML se sirve con el idioma correcto. El selector EN/ES conserva la ruta y la consulta de sucursal.
 
 ## Tecnología y estructura
 
@@ -49,7 +49,7 @@ src/lib/validate-content.ts   Validación de relaciones y estados
 src/components/              Presentación e interacciones
 src/app/                     Rutas, estilos, robots y sitemap
 scripts/prepare-assets.mjs    Derivados sin alterar originales
-scripts/check-routes.mjs      Validación HTTP de las 20 páginas
+scripts/check-routes.mjs      Validación HTTP de las 22 páginas
 tests/content.test.ts         Pruebas de integridad y aislamiento
 docs/                        Mantenimiento, pendientes, validación y licencias
 ```
@@ -85,7 +85,7 @@ Teléfono y mapas se construyen exclusivamente desde los datos de cada sede. No 
 
 Eventos `aztec:interaction`: `select_location`, `view_menu`, `click_phone`, `click_directions`, `click_email`, `click_social`, con `language` y `location_id` (nullable para la marca). Son CustomEvents en memoria; no hay envío, registro persistente ni proveedor de analítica. En caso de integrar uno, revisar privacidad antes de conectarlo.
 
-Pedidos, reservas y newsletter siguen deshabilitados. El formulario de contacto EN/ES está implementado con una API Node.js y Nodemailer para SMTP existente. Su envío queda desactivado hasta completar y habilitar la configuración del servidor; no se simula ninguna confirmación de envío. Consulta `docs/SMTP.md`. Las redes y mapas son enlaces externos; no hay feeds ni mapas embebidos. No hay cookies no esenciales ni banner ficticio.
+Pedidos, reservas y newsletter siguen deshabilitados. El formulario de contacto EN/ES está implementado con una API Node.js y Nodemailer para SMTP existente. Su envío queda desactivado hasta completar y habilitar la configuración del servidor; no se simula ninguna confirmación de envío. La página de empleo (`careers`, enlazada en header y footer) recibe CV con un captcha nativo y usa el mismo SMTP. Consulta `docs/SMTP.md`. Las redes y mapas son enlaces externos; no hay feeds ni mapas embebidos. No hay cookies no esenciales ni banner ficticio.
 
 ## SEO y lanzamiento
 

@@ -1,6 +1,8 @@
 import nodemailer, { type SendMailOptions } from "nodemailer";
 import { brand } from "@/data/brand";
+import { careersDictionary } from "@/data/careers-translations";
 import { activeLocations } from "@/data/locations";
+import type { ApplicationPayload } from "@/lib/careers";
 import { validEmail, type ContactPayload } from "@/lib/contact";
 
 export type SmtpConfig = {
@@ -69,6 +71,50 @@ export function buildContactEmail(
     disableUrlAccess: true,
   };
 }
+export type CvAttachment = { content: Buffer; extension: string; type: string };
+export function buildApplicationEmail(
+  config: SmtpConfig,
+  payload: ApplicationPayload,
+  cv: CvAttachment,
+): SendMailOptions {
+  const location = activeLocations.find(
+    (item) => item.id === payload.locationId,
+  );
+  // The attachment name is rebuilt from the validated name; the uploaded file name is never used.
+  const slug = payload.name
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^A-Za-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 60);
+  return {
+    from: { name: brand.name, address: config.from },
+    to: config.to,
+    replyTo: { name: payload.name, address: payload.email },
+    subject: `${brand.name}: Job application / Solicitud de empleo - ${payload.name}`,
+    text: [
+      "Job application / Solicitud de empleo",
+      `Name / Nombre: ${payload.name}`,
+      `Email / Correo: ${payload.email}`,
+      `Phone / Teléfono: ${payload.phone}`,
+      `Area / Área: ${careersDictionary("en").positions[payload.position]} / ${careersDictionary("es").positions[payload.position]}`,
+      `Location / Sucursal: ${location?.name || "Any / Cualquiera"}`,
+      `Language / Idioma: ${payload.locale}`,
+      "Application consent / Consentimiento de solicitud: yes / sí",
+      "",
+      payload.message,
+    ].join("\n"),
+    attachments: [
+      {
+        filename: `CV-${slug || "applicant"}.${cv.extension}`,
+        content: cv.content,
+        contentType: cv.type,
+      },
+    ],
+    disableFileAccess: true,
+    disableUrlAccess: true,
+  };
+}
 export function smtpTransport(config: SmtpConfig) {
   return nodemailer.createTransport({
     host: config.host,
@@ -85,16 +131,26 @@ export function smtpTransport(config: SmtpConfig) {
     debug: false,
   });
 }
-export async function deliverContact(
-  config: SmtpConfig,
-  payload: ContactPayload,
-): Promise<void> {
+async function send(config: SmtpConfig, mail: SendMailOptions) {
   const transport = smtpTransport(config);
   try {
-    const result = await transport.sendMail(buildContactEmail(config, payload));
+    const result = await transport.sendMail(mail);
     if (!result.accepted?.length || result.rejected?.length)
       throw new Error("SMTP recipient not accepted");
   } finally {
     transport.close();
   }
+}
+export async function deliverContact(
+  config: SmtpConfig,
+  payload: ContactPayload,
+): Promise<void> {
+  await send(config, buildContactEmail(config, payload));
+}
+export async function deliverApplication(
+  config: SmtpConfig,
+  payload: ApplicationPayload,
+  cv: CvAttachment,
+): Promise<void> {
+  await send(config, buildApplicationEmail(config, payload, cv));
 }

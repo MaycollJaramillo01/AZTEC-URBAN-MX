@@ -8,6 +8,8 @@ import {
   directionsUrl,
   type Location,
 } from "@/data/locations";
+import { careersDictionary } from "@/data/careers-translations";
+import { positions } from "@/lib/careers";
 import { dictionary, pathFor, type Locale } from "@/lib/i18n";
 import { Photo, getImage } from "./photo";
 import { Icon } from "./icons";
@@ -16,6 +18,7 @@ import { LocationCard } from "./location-card";
 import { MenuSelector } from "./menu-selector";
 import { Gallery } from "./gallery";
 import { ContactForm } from "./contact-form";
+import { CareersForm } from "./careers-form";
 
 export function HomePage({ locale }: { locale: Locale }) {
   const t = dictionary(locale);
@@ -610,6 +613,60 @@ export function ContactPage({ locale }: { locale: Locale }) {
     </section>
   );
 }
+export function CareersPage({ locale }: { locale: Locale }) {
+  const t = careersDictionary(locale);
+  return (
+    <>
+      <section className="story-hero section">
+        <div className="container">
+          <PageHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro} />
+          <div className="story-body">
+            <Photo id="aztec-interior" locale={locale} priority />
+            <div>
+              <h2>{t.teamTitle}</h2>
+              <p>{t.teamBody}</p>
+              <a className="button careers-cta" href="#apply">
+                {t.apply}
+                <Icon name="arrow" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="story-values section">
+        <div className="container">
+          <h2>{t.valuesTitle}</h2>
+          <p>{t.valuesBody}</p>
+          <div className="values-list">
+            {t.values.map((value) => (
+              <div key={value.title}>
+                <h3>{value.title}</h3>
+                <p>{value.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="section careers-apply">
+        <div className="container">
+          <div className="section-heading">
+            <h2>{t.rolesTitle}</h2>
+            <p>{t.rolesIntro}</p>
+          </div>
+          <ul className="roles-list">
+            {positions.map((position) => (
+              <li key={position}>
+                <h3>{t.positions[position]}</h3>
+                <p>{t.roles[position]}</p>
+              </li>
+            ))}
+          </ul>
+          <CareersForm locale={locale} />
+        </div>
+      </section>
+    </>
+  );
+}
 export function PrivacyPage({ locale }: { locale: Locale }) {
   const t = dictionary(locale);
   return (
@@ -618,7 +675,14 @@ export function PrivacyPage({ locale }: { locale: Locale }) {
         <PageHeading title={t.privacy.title} intro={t.privacy.intro} />
         <p className="small-text">{t.privacy.review}</p>
         {(
-          ["local", "analytics", "external", "contact", "hosting"] as const
+          [
+            "local",
+            "analytics",
+            "external",
+            "contact",
+            "careers",
+            "hosting",
+          ] as const
         ).map((key) => (
           <section key={key}>
             <h2>{t.privacy[`${key}Title`]}</h2>

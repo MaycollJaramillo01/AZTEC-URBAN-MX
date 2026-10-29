@@ -9,6 +9,7 @@ const slugs = [
   "locations/fifth-street",
   "story",
   "gallery",
+  "careers",
   "contact",
   "privacy",
 ];

@@ -14,11 +14,11 @@ URL de producción: https://aztec-urban-mx.vercel.app. La raíz redirige a `/en`
 
 ## Variables de servidor
 
-Configurar en Production: `CONTACT_FORM_ENABLED`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`, `SMTP_TO`, `SITE_INDEXABLE`. Los valores están almacenados como secretos en Vercel. Nunca pasarlos como argumentos CLI ni incluirlos en commits.
+Configurar en Production: `CONTACT_FORM_ENABLED`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`, `SMTP_TO`, `CAPTCHA_SECRET`, `SITE_INDEXABLE`. Los valores están almacenados como secretos en Vercel. Nunca pasarlos como argumentos CLI ni incluirlos en commits.
 
 El formulario usa Microsoft 365 con STARTTLS. Los campos están habilitados solo cuando existe configuración completa; éxito significa aceptación SMTP, no una garantía de entrega en bandeja. No se enviaron mensajes de prueba reales durante las comprobaciones.
 
-La regla WAF `Contact form limit` está publicada: cinco POST a `/api/contact` por IP en una ventana de 600 segundos. Vercel cuenta por región; además existe un límite de aplicación por proceso. No compartir los secretos SMTP con builds de forks ni añadirlos al código cliente.
+La regla WAF `Contact form limit` está publicada: cinco POST a `/api/contact` por IP en una ventana de 600 segundos. Vercel cuenta por región; además existe un límite de aplicación por proceso. Falta una regla equivalente para `/api/careers` (formulario de empleo). No compartir los secretos SMTP con builds de forks ni añadirlos al código cliente.
 
 ## Indexación
 
@@ -38,4 +38,4 @@ Si se necesita un despliegue manual desde un checkout ya vinculado:
 vercel --prod --yes --scope maycolljaramillo01s-projects
 ```
 
-Verificar el estado Ready, ambas versiones de idioma, ubicaciones, `/api/contact` y la ausencia de secretos en el repositorio. No efectuar un envío real a una bandeja sin la instrucción correspondiente.
+Verificar el estado Ready, ambas versiones de idioma, ubicaciones, `/api/contact`, `/api/careers` y la ausencia de secretos en el repositorio. No efectuar un envío real a una bandeja sin la instrucción correspondiente.

@@ -88,7 +88,7 @@ test("menu lookup isolates both the location and the language", () => {
 });
 
 test("all required routes switch language while preserving location and query", () => {
-  assert.equal(pageSlugs.length, 10);
+  assert.equal(pageSlugs.length, 11);
   for (const slug of pageSlugs) {
     const source = pathFor("en", slug);
     assert.equal(alternateLanguagePath(source, "es"), pathFor("es", slug));

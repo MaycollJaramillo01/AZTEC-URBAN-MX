@@ -2602,3 +2602,95 @@ button {
     width: 100%;
   }
 }
+/* Careers: reuses the story layout and contact form styles. */
+.story-body .careers-cta {
+  margin-top: 32px;
+}
+.roles-list {
+  list-style: none;
+  margin: 0 0 64px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 48px;
+}
+.roles-list li {
+  border-top: 2px solid var(--gold);
+  padding-top: 20px;
+}
+.roles-list p {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--muted);
+}
+.careers-apply .contact-form-section {
+  margin-bottom: 0;
+  padding: 64px 0 0;
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+}
+.form-field input[type="file"] {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.form-field input[type="file"]::file-selector-button {
+  margin-right: 14px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--charcoal);
+  color: var(--cream);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.contact-form fieldset:disabled input::file-selector-button {
+  background: #ccc0ac;
+  color: #554c3c;
+  cursor: not-allowed;
+}
+.field-hint {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.captcha-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.captcha-question {
+  min-width: 112px;
+  padding: 10px 16px;
+  font-family: var(--display);
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-align: center;
+  background: var(--cream);
+  border: 1px dashed #8a806d;
+  border-radius: var(--radius);
+  user-select: none;
+}
+.form-field .captcha-row input {
+  width: 96px;
+}
+@media (max-width: 1023px) {
+  .roles-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .roles-list {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 40px;
+  }
+  .roles-list h3 {
+    font-size: 26px;
+  }
+  .careers-apply .contact-form-section {
+    padding-top: 40px;
+  }
+}

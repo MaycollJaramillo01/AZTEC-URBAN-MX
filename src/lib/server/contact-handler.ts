@@ -7,7 +7,7 @@ type Dependencies = {
   deliver?: (config: SmtpConfig, payload: ContactPayload) => Promise<void>;
   now?: () => number;
 };
-function json(
+export function json(
   body: object,
   status: number,
   extra: Record<string, string> = {},
@@ -17,8 +17,8 @@ function json(
     headers: { "Cache-Control": "no-store", ...extra },
   });
 }
-async function readBody(request: Request): Promise<unknown> {
-  if (Number(request.headers.get("content-length")) > 16384)
+export async function readBody(request: Request, limit: number) {
+  if (Number(request.headers.get("content-length")) > limit)
     throw new RangeError();
   const reader = request.body?.getReader();
   if (!reader) throw new SyntaxError();
@@ -28,29 +28,24 @@ async function readBody(request: Request): Promise<unknown> {
     const part = await reader.read();
     if (part.done) break;
     total += part.value.byteLength;
-    if (total > 16384) {
+    if (total > limit) {
       await reader.cancel();
       throw new RangeError();
     }
     chunks.push(part.value);
   }
-  return JSON.parse(Buffer.concat(chunks).toString("utf8"));
+  return Buffer.concat(chunks);
 }
-export function createContactHandler(dependencies: Dependencies = {}) {
-  const config = dependencies.config || readSmtpConfig;
-  const deliver = dependencies.deliver || deliverContact;
-  const now = dependencies.now || Date.now;
+// Same-origin, content-type and attempt checks shared by the form endpoints.
+export function requestGuard(now: () => number) {
   // Per-process protection. A public Vercel deployment also needs a platform-wide WAF rate rule.
   const attempts = new Map<string, { count: number; expires: number }>();
   const salt = randomBytes(32);
-  return async (request: Request) => {
+  return (request: Request, type: string) => {
     const origin = request.headers.get("origin");
     if (!origin || origin !== new URL(request.url).origin)
       return json({ ok: false, code: "forbidden" }, 403);
-    if (
-      request.headers.get("content-type")?.split(";")[0].trim() !==
-      "application/json"
-    )
+    if (request.headers.get("content-type")?.split(";")[0].trim() !== type)
       return json({ ok: false, code: "invalid" }, 415);
     const timestamp = now();
     for (const [key, bucket] of attempts)
@@ -71,11 +66,21 @@ export function createContactHandler(dependencies: Dependencies = {}) {
       count: (previous?.count || 0) + 1,
       expires: previous?.expires || timestamp + 900000,
     });
+    return null;
+  };
+}
+export function createContactHandler(dependencies: Dependencies = {}) {
+  const config = dependencies.config || readSmtpConfig;
+  const deliver = dependencies.deliver || deliverContact;
+  const guard = requestGuard(dependencies.now || Date.now);
+  return async (request: Request) => {
+    const refused = guard(request, "application/json");
+    if (refused) return refused;
     const smtp = config();
     if (!smtp) return json({ ok: false, code: "unavailable" }, 503);
     let value: unknown;
     try {
-      value = await readBody(request);
+      value = JSON.parse((await readBody(request, 16384)).toString("utf8"));
     } catch (error) {
       return json(
         {

@@ -45,6 +45,14 @@ El servidor espera a que `sendMail` termine y a que el proveedor acepte el desti
 
 Las pruebas automatizadas generan el MIME en memoria y sustituyen la entrega por una función local controlada. Cubren la espera de aceptación, fallos de proveedor, configuración incompleta, validación, origen, tamaño y límite de intentos. No enviaron correos reales.
 
+## Formulario de empleo
+
+`/en/careers` y `/es/careers` usan el mismo SMTP y la misma bandeja (`SMTP_TO`). `POST /api/careers` recibe `multipart/form-data` con un CV de hasta 4 MiB y 64 KiB de campos, por debajo del límite de 4,5 MB de Vercel Functions. Acepta PDF, DOC, DOCX, JPG y PNG; el tipo se determina por los primeros bytes del archivo, no por su nombre, y el adjunto se renombra como `CV-Nombre.ext`. El CV solo permanece en memoria durante el envío; no se guarda en disco, base de datos ni navegador.
+
+El captcha es nativo: `GET /api/careers` entrega una suma sencilla y un token firmado con HMAC-SHA256 que caduca a los 30 minutos; la respuesta nunca viaja en claro. Cada desafío resuelto se acepta una sola vez por proceso. No usa servicios de terceros, cookies ni scripts externos. Se suman el campo antispam, la comprobación de origen y el mismo límite de cinco intentos en quince minutos.
+
+Configurar `CAPTCHA_SECRET` (32 caracteres aleatorios o más) en `.env.local` y en Vercel. Sin él, cada proceso genera su propia clave: funciona en local, pero en Vercel otra instancia puede rechazar el desafío y pedir una nueva respuesta. Se recomienda una regla WAF equivalente a la del contacto para `POST /api/careers`.
+
 ## Límite de intentos
 
 La API admite cinco intentos por identificador de conexión en una ventana de quince minutos por proceso y limita el cuerpo a 16 KiB. Conserva únicamente un hash con sal aleatoria en la memoria del proceso; las entradas vencidas se eliminan al atender solicitudes posteriores o al terminar el proceso.

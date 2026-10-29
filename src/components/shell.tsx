@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { brand } from "@/data/brand";
 import { locations, fullAddress } from "@/data/locations";
-import { dictionary, pathFor, type Locale } from "@/lib/i18n";
+import { dictionary, navSlugs, pathFor, type Locale } from "@/lib/i18n";
 import { Icon } from "./icons";
 import { LanguageSwitch, MobileMenu, ActionLink } from "./interactions";
 
@@ -27,9 +27,7 @@ export function Header({ locale }: { locale: Locale }) {
         <div className="header-inner">
           <Wordmark locale={locale} />
           <nav className="desktop-nav" aria-label={t.nav.label}>
-            {(
-              ["menu", "locations", "story", "gallery", "contact"] as const
-            ).map((slug) => (
+            {navSlugs.map((slug) => (
               <Link key={slug} href={pathFor(locale, slug)}>
                 {t.nav[slug]}
               </Link>
@@ -116,6 +114,7 @@ export function Footer({ locale }: { locale: Locale }) {
             © {new Date().getFullYear()} {brand.name}. {t.common.copyright}
           </p>
           <nav aria-label={t.footer.explore}>
+            <Link href={pathFor(locale, "careers")}>{t.nav.careers}</Link>
             <Link href={pathFor(locale, "contact")}>{t.nav.contact}</Link>
             <Link href={pathFor(locale, "privacy")}>{t.nav.privacy}</Link>
             <LanguageSwitch locale={locale} />

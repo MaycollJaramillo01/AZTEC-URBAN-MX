@@ -31,6 +31,7 @@ export function pageMetadata(locale: Locale, slug: string): Metadata {
     locations: t.meta.locations,
     story: t.meta.story,
     gallery: t.meta.gallery,
+    careers: t.meta.careers,
     contact: t.meta.contact,
     privacy: t.meta.privacy,
     "locations/fifth-street": t.meta.future,
@@ -48,6 +49,8 @@ export function pageMetadata(locale: Locale, slug: string): Metadata {
             "Get to know Aztec Urban MX, where Mexican cultural traditions and contemporary energy bring people together in Tyler, Texas.",
           gallery:
             "Explore real photographs of Aztec Urban MX food, cocktails, and restaurant atmosphere, with links to their original Instagram posts.",
+          careers:
+            "Join the Aztec Urban MX team in Tyler, Texas. Apply for kitchen, service, bar, host, or management roles and send us your CV.",
           contact:
             "Contact Aztec Urban MX at info@aztecmx.com or call your Broadway restaurant in Tyler for current menus and hours.",
           privacy:
@@ -63,6 +66,8 @@ export function pageMetadata(locale: Locale, slug: string): Metadata {
             "Conoce Aztec Urban MX, donde las tradiciones culturales mexicanas y la energía contemporánea reúnen a las personas en Tyler, Texas.",
           gallery:
             "Explora fotografías reales de la comida, los cocteles y el ambiente de Aztec Urban MX, con enlaces a sus publicaciones originales en Instagram.",
+          careers:
+            "Únete al equipo de Aztec Urban MX en Tyler, Texas. Postúlate a cocina, servicio, barra, recepción o gerencia y envíanos tu CV.",
           contact:
             "Contacta a Aztec Urban MX en info@aztecmx.com o llama a tu sucursal de Broadway en Tyler para consultar el menú y los horarios vigentes.",
           privacy:

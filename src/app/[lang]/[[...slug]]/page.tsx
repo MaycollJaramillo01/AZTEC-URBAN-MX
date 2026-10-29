@@ -10,6 +10,7 @@ import {
   LocationPage,
   StoryPage,
   GalleryPage,
+  CareersPage,
   ContactPage,
   PrivacyPage,
 } from "@/components/pages";
@@ -44,6 +45,9 @@ export default async function Page({ params }: Props) {
       break;
     case "gallery":
       content = <GalleryPage locale={lang} />;
+      break;
+    case "careers":
+      content = <CareersPage locale={lang} />;
       break;
     case "contact":
       content = <ContactPage locale={lang} />;

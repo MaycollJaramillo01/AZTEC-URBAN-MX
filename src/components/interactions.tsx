@@ -6,6 +6,7 @@ import Link from "next/link";
 import {
   dictionary,
   alternateLanguagePath,
+  navSlugs,
   pathFor,
   type Locale,
 } from "@/lib/i18n";
@@ -138,14 +139,12 @@ export function MobileMenu({ locale }: { locale: Locale }) {
           </button>
         </div>
         <nav aria-label={t.nav.label}>
-          {(["menu", "locations", "story", "gallery", "contact"] as const).map(
-            (slug) => (
-              <Link key={slug} href={pathFor(locale, slug)} onClick={close}>
-                {t.nav[slug]}
-                <Icon name="arrow" />
-              </Link>
-            ),
-          )}
+          {navSlugs.map((slug) => (
+            <Link key={slug} href={pathFor(locale, slug)} onClick={close}>
+              {t.nav[slug]}
+              <Icon name="arrow" />
+            </Link>
+          ))}
         </nav>
         <LanguageSwitch locale={locale} />
       </dialog>

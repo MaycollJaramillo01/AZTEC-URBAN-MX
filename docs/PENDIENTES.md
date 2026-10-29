@@ -11,6 +11,7 @@ La vista previa sigue adelante con los datos proporcionados. Esta lista no es un
 - Aprobar copy, traducción, paleta y dirección visual propuestas. No se presentan misión, visión o lema como hechos históricos.
 - Confirmar dominio final. `aztecurbanmx.com` es referencia del brief, no configuración asumida. Conservar siempre el correo `info@aztecmx.com` salvo instrucción expresa.
 - Microsoft 365 ya tiene conexión, TLS y autenticación SMTP verificadas. Antes de publicar, confirmar el responsable de la bandeja y probar un envío real autorizado hasta el destinatario final. Las credenciales están configuradas localmente y como secretos de producción en Vercel; no se versionan en GitHub.
+- Empleo: confirmar la bandeja de RR. HH. (hoy los CV llegan a `SMTP_TO`), la conservación de solicitudes, las áreas y los textos de la página. Configurar `CAPTCHA_SECRET` y una regla WAF para `/api/careers` en Vercel.
 - Confirmar qué servicios existen realmente antes de incorporar pedidos, reservas, catering o newsletter. Pedidos, reservas y newsletter permanecen deshabilitados.
 - Designar hosting y responsable de privacidad, revisar registros técnicos, retención y texto legal; definir si habrá analítica y cómo se obtendrá consentimiento cuando corresponda.
 - Aprobar imagen Open Graph antes de emitirla. Solo después de completar la revisión, configurar dominio e indexación y ejecutar nuevo build.
