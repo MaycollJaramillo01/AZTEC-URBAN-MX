@@ -4,7 +4,11 @@ import nodemailer from "nodemailer";
 import { maxCvBytes, validateApplication } from "@/lib/careers";
 import { createChallenge, verifyChallenge } from "@/lib/server/captcha";
 import { createCareersHandlers } from "@/lib/server/careers-handler";
-import { buildApplicationEmail, type SmtpConfig } from "@/lib/server/smtp";
+import {
+  buildApplicationEmail,
+  readSmtpConfig,
+  type SmtpConfig,
+} from "@/lib/server/smtp";
 
 const secret = "test-only-secret-with-more-than-32-characters";
 const smtp: SmtpConfig = {
@@ -95,12 +99,26 @@ test("applications reject injection, spam, future locations and unsupported file
 test("application email keeps fixed sender and inbox and attaches the CV under a rebuilt name", async () => {
   const result = validateApplication(form({ name: "José Pérez/../x" }));
   assert.ok(result.ok);
-  const mail = buildApplicationEmail(smtp, result.data, {
+  const env = {
+    CONTACT_FORM_ENABLED: "true",
+    SMTP_HOST: "smtp.example.test",
+    SMTP_USER: "test-only",
+    SMTP_PASS: "test-only",
+    SMTP_FROM: "website@example.test",
+  };
+  assert.equal(readSmtpConfig(env)?.careersCc, undefined);
+  assert.equal(
+    readSmtpConfig({ ...env, CAREERS_CC: "copy@example.test\r\nBcc: x@example.test" }),
+    null,
+  );
+  const config = readSmtpConfig({ ...env, CAREERS_CC: "copy@example.test" })!;
+  const mail = buildApplicationEmail({ ...smtp, careersCc: config.careersCc }, result.data, {
     content: Buffer.from("%PDF-1.7 test fixture"),
     extension: "pdf",
     type: "application/pdf",
   });
   assert.equal(mail.to, smtp.to);
+  assert.equal(mail.cc, "copy@example.test");
   assert.deepEqual(mail.from, { name: "Aztec Urban MX", address: smtp.from });
   assert.deepEqual(mail.replyTo, {
     name: "José Pérez/../x",
@@ -117,6 +135,7 @@ test("application email keeps fixed sender and inbox and attaches the CV under a
   const message = (await transport.sendMail(mail)).message.toString();
   assert.match(message, /filename="?CV-Jose-Perez-x\.pdf"?/);
   assert.match(message, /Content-Type: application\/pdf/);
+  assert.match(message, /Cc: copy@example\.test/);
 });
 
 test("careers API checks origin, file signature and single-use captcha before sending", async () => {

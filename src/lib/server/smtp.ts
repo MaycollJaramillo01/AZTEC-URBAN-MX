@@ -13,6 +13,8 @@ export type SmtpConfig = {
   pass: string;
   from: string;
   to: string;
+  // Optional visible copy (Cc) of job applications.
+  careersCc?: string;
 };
 export function readSmtpConfig(
   env: Record<string, string | undefined> = process.env,
@@ -24,6 +26,7 @@ export function readSmtpConfig(
   const pass = env.SMTP_PASS;
   const from = env.SMTP_FROM?.trim();
   const to = env.SMTP_TO?.trim() || brand.email;
+  const careersCc = env.CAREERS_CC?.trim() || undefined;
   const port = Number(env.SMTP_PORT || "587");
   if (
     !host ||
@@ -33,6 +36,7 @@ export function readSmtpConfig(
     !from ||
     !validEmail(from) ||
     !validEmail(to) ||
+    (careersCc && !validEmail(careersCc)) ||
     !Number.isInteger(port) ||
     port < 1 ||
     port > 65535 ||
@@ -43,7 +47,7 @@ export function readSmtpConfig(
     return null;
   const secure = env.SMTP_SECURE ? env.SMTP_SECURE === "true" : port === 465;
   if (port === 465 && !secure) return null;
-  return { host, port, secure, user, pass, from, to };
+  return { host, port, secure, user, pass, from, to, careersCc };
 }
 export function buildContactEmail(
   config: SmtpConfig,
@@ -90,6 +94,7 @@ export function buildApplicationEmail(
   return {
     from: { name: brand.name, address: config.from },
     to: config.to,
+    cc: config.careersCc,
     replyTo: { name: payload.name, address: payload.email },
     subject: `${brand.name}: Job application / Solicitud de empleo - ${payload.name}`,
     text: [

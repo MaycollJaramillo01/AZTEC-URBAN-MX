@@ -47,7 +47,7 @@ Las pruebas automatizadas generan el MIME en memoria y sustituyen la entrega por
 
 ## Formulario de empleo
 
-`/en/careers` y `/es/careers` usan el mismo SMTP y la misma bandeja (`SMTP_TO`). `POST /api/careers` recibe `multipart/form-data` con un CV de hasta 4 MiB y 64 KiB de campos, por debajo del límite de 4,5 MB de Vercel Functions. Acepta PDF, DOC, DOCX, JPG y PNG; el tipo se determina por los primeros bytes del archivo, no por su nombre, y el adjunto se renombra como `CV-Nombre.ext`. El CV solo permanece en memoria durante el envío; no se guarda en disco, base de datos ni navegador.
+`/en/careers` y `/es/careers` usan el mismo SMTP y la misma bandeja (`SMTP_TO`). `CAREERS_CC` (opcional, dirección simple) añade una copia visible (Cc) de cada solicitud; si es inválida, ambos formularios quedan deshabilitados como con el resto de la configuración. `POST /api/careers` recibe `multipart/form-data` con un CV de hasta 4 MiB y 64 KiB de campos, por debajo del límite de 4,5 MB de Vercel Functions. Acepta PDF, DOC, DOCX, JPG y PNG; el tipo se determina por los primeros bytes del archivo, no por su nombre, y el adjunto se renombra como `CV-Nombre.ext`. El CV solo permanece en memoria durante el envío; no se guarda en disco, base de datos ni navegador.
 
 El captcha es nativo: `GET /api/careers` entrega una suma sencilla y un token firmado con HMAC-SHA256 que caduca a los 30 minutos; la respuesta nunca viaja en claro. Cada desafío resuelto se acepta una sola vez por proceso. No usa servicios de terceros, cookies ni scripts externos. Se suman el campo antispam, la comprobación de origen y el mismo límite de cinco intentos en quince minutos.
 
