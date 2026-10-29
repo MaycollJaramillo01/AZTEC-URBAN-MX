@@ -135,7 +135,8 @@ test("application email keeps fixed sender and inbox and attaches the CV under a
   const html = String(mail.html);
   assert.ok(!html.includes("<script>"));
   assert.ok(html.includes("&#60;script&#62;alert(1)&#60;/script&#62;<br>Weekends"));
-  assert.ok(html.includes("CV adjunto: CV-Jose-Perez-x.pdf"));
+  assert.ok(html.includes("CV attached at the end of this email (PDF)"));
+  assert.ok(!html.includes("CV-Jose-Perez-x.pdf"));
   assert.ok(html.includes('href="tel:+19035550100"'));
   assert.match(html, /href="mailto:applicant@example\.test\?subject=Tu%20solicitud/);
   // Nodemailer builds the MIME message in memory; it cannot contact any mailbox.

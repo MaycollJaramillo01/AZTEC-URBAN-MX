@@ -38,8 +38,9 @@ export function emailHtml({
   const text = message.text
     ? `<p style="margin:28px 0 8px;font-size:11px;line-height:16px;letter-spacing:1px;text-transform:uppercase;font-weight:bold;color:#686354;">${escape(message.label)}</p><div style="background:#f5ebdd;border-left:3px solid #344a3b;padding:16px 18px;font-size:15px;line-height:24px;color:#171713;">${escape(message.text).replace(/\n/g, "<br>")}</div>`
     : "";
+  // Plain text on purpose: an email body cannot reliably link to its own attachment.
   const attachment = note
-    ? `<p style="margin:20px 0 0;padding:12px 14px;border:1px dashed #8a806d;border-radius:4px;font-size:14px;line-height:20px;color:#171713;">${escape(note)}</p>`
+    ? `<p style="margin:20px 0 0;font-size:14px;line-height:20px;color:#171713;">&#128206; ${escape(note)}</p>`
     : "";
   const buttons = actions
     .map(

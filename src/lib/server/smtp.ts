@@ -164,7 +164,7 @@ export function buildApplicationEmail(
         label: "Experience and availability · Experiencia y disponibilidad",
         text: payload.message,
       },
-      note: `CV attached · CV adjunto: ${filename}`,
+      note: `CV attached at the end of this email (${cv.extension.toUpperCase()}) · CV adjunto al final de este correo`,
       actions: [
         {
           label: "Reply · Responder",
