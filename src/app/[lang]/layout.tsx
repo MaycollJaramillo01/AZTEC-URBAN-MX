@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "@/app/globals.css";
 import { isLocale, locales } from "@/lib/i18n";
 import { Header, Footer } from "@/components/shell";
@@ -47,6 +48,7 @@ export default async function LocaleLayout({
         <Footer locale={lang} />
         <InteractionObserver locale={lang} />
         <EntranceAnimations />
+        <Script src="https://inkindscript.com/inkind.js" />
       </body>
     </html>
   );

@@ -181,13 +181,13 @@ const en = {
   privacy: {
     title: "Your privacy.",
     intro: "How this website handles information.",
-    review: "Last updated: October 28, 2026.",
+    review: "Last updated: October 29, 2026.",
     localTitle: "Your location preference",
     localBody:
       "If you choose a Broadway location, this website remembers its identifier in your browser’s local storage. It is used only to keep your menu selection consistent. You can change it on the Menus page or remove it by clearing this website’s browser data. We do not store your precise location or request geolocation.",
     analyticsTitle: "Cookies and analytics",
     analyticsBody:
-      "This website does not load advertising tools, analytics services, social feeds, tracking pixels, embedded maps, or nonessential cookies. No marketing subscriptions are enabled. Our interaction events stay within the page and are not sent to an analytics provider.",
+      "This website does not load advertising tools, analytics services, social feeds, tracking pixels, or embedded maps, and it does not set nonessential cookies of its own. It does load a script from inKind, a restaurant credit and gift card service, that can show a promotional pop-up. When the script loads, inKind receives connection details such as your IP address, browser information, and the page you are viewing, and it may use cookies or similar browser storage for the pop-up. If you use the pop-up, inKind handles that information under its own privacy policy. No marketing subscriptions are enabled. Our interaction events stay within the page and are not sent to an analytics provider.",
     externalTitle: "Links to other services",
     externalBody:
       "Google Maps, Instagram, Facebook, your email application, and your phone application open only when you follow their links. Those services handle information under their own privacy policies. Local photos and fonts are served by this website.",
@@ -380,13 +380,13 @@ const es: Dictionary = {
   privacy: {
     title: "Tu privacidad.",
     intro: "Cómo maneja la información este sitio web.",
-    review: "Última actualización: 28 de octubre de 2026.",
+    review: "Última actualización: 29 de octubre de 2026.",
     localTitle: "Tu sucursal preferida",
     localBody:
       "Si eliges una sucursal de Broadway, este sitio recuerda su identificador en el almacenamiento local de tu navegador. Solo se usa para mantener tu selección de menú. Puedes cambiarla en Menús o eliminarla borrando los datos de este sitio en el navegador. No guardamos tu ubicación precisa ni solicitamos geolocalización.",
     analyticsTitle: "Cookies y analítica",
     analyticsBody:
-      "Este sitio no carga publicidad, servicios de analítica, feeds sociales, píxeles de seguimiento, mapas integrados ni cookies no esenciales. No hay suscripciones de marketing habilitadas. Los eventos de interacción permanecen en la página y no se envían a un proveedor de analítica.",
+      "Este sitio no carga publicidad, servicios de analítica, feeds sociales, píxeles de seguimiento ni mapas integrados, y no crea cookies no esenciales propias. Sí carga un script de inKind, un servicio de crédito y tarjetas de regalo para restaurantes, que puede mostrar una ventana emergente promocional. Al cargarse el script, inKind recibe datos de conexión como tu dirección IP, información del navegador y la página que estás viendo, y puede usar cookies o almacenamiento similar del navegador para la ventana emergente. Si usas la ventana emergente, inKind trata esa información según su propia política de privacidad. No hay suscripciones de marketing habilitadas. Los eventos de interacción permanecen en la página y no se envían a un proveedor de analítica.",
     externalTitle: "Enlaces a otros servicios",
     externalBody:
       "Google Maps, Instagram, Facebook, tu aplicación de correo y tu aplicación de teléfono solo se abren al seguir sus enlaces. Esos servicios tratan información según sus propias políticas de privacidad. Las fotos y fuentes locales se sirven desde este sitio.",
