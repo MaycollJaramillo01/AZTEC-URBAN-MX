@@ -97,7 +97,12 @@ test("applications reject injection, spam, future locations and unsupported file
 });
 
 test("application email keeps fixed sender and inbox and attaches the CV under a rebuilt name", async () => {
-  const result = validateApplication(form({ name: "José Pérez/../x" }));
+  const result = validateApplication(
+    form({
+      name: "José Pérez/../x",
+      message: "<script>alert(1)</script>\nWeekends",
+    }),
+  );
   assert.ok(result.ok);
   const env = {
     CONTACT_FORM_ENABLED: "true",
@@ -126,6 +131,13 @@ test("application email keeps fixed sender and inbox and attaches the CV under a
   });
   assert.match(String(mail.text), /Area \/ Área: Kitchen \/ Cocina/);
   assert.match(String(mail.text), /Location \/ Sucursal: 7918 S\. Broadway/);
+  // Applicant input is escaped in the HTML version; only the template adds markup.
+  const html = String(mail.html);
+  assert.ok(!html.includes("<script>"));
+  assert.ok(html.includes("&#60;script&#62;alert(1)&#60;/script&#62;<br>Weekends"));
+  assert.ok(html.includes("CV adjunto: CV-Jose-Perez-x.pdf"));
+  assert.ok(html.includes('href="tel:+19035550100"'));
+  assert.match(html, /href="mailto:applicant@example\.test\?subject=Tu%20solicitud/);
   // Nodemailer builds the MIME message in memory; it cannot contact any mailbox.
   const transport = nodemailer.createTransport({
     streamTransport: true,
@@ -136,6 +148,7 @@ test("application email keeps fixed sender and inbox and attaches the CV under a
   assert.match(message, /filename="?CV-Jose-Perez-x\.pdf"?/);
   assert.match(message, /Content-Type: application\/pdf/);
   assert.match(message, /Cc: copy@example\.test/);
+  assert.match(message, /Content-Type: text\/html/);
 });
 
 test("careers API checks origin, file signature and single-use captcha before sending", async () => {

@@ -4,6 +4,7 @@ import { careersDictionary } from "@/data/careers-translations";
 import { activeLocations } from "@/data/locations";
 import type { ApplicationPayload } from "@/lib/careers";
 import { validEmail, type ContactPayload } from "@/lib/contact";
+import { emailHtml, mailto } from "./email-template";
 
 export type SmtpConfig = {
   host: string;
@@ -56,11 +57,12 @@ export function buildContactEmail(
   const location = activeLocations.find(
     (item) => item.id === payload.locationId,
   );
+  const subject = `${brand.name}: ${location ? location.name : "General inquiry"}`;
   return {
     from: { name: brand.name, address: config.from },
     to: config.to,
     replyTo: { name: payload.name, address: payload.email },
-    subject: `${brand.name}: ${location ? location.name : "General inquiry"}`,
+    subject,
     text: [
       "Website contact / Contacto web",
       `Name / Nombre: ${payload.name}`,
@@ -71,6 +73,32 @@ export function buildContactEmail(
       "",
       payload.message,
     ].join("\n"),
+    html: emailHtml({
+      preheader: `${payload.name} · ${location?.name || "General"}`,
+      eyebrow: "Website message · Mensaje del sitio web",
+      title: payload.name,
+      rows: [
+        {
+          label: "Email · Correo",
+          value: payload.email,
+          href: mailto(payload.email),
+        },
+        { label: "Location · Sucursal", value: location?.name || "General" },
+        {
+          label: "Language · Idioma",
+          value: payload.locale === "es" ? "Español" : "English",
+        },
+        { label: "Consent · Consentimiento", value: "Yes · Sí" },
+      ],
+      message: { label: "Message · Mensaje", text: payload.message },
+      actions: [
+        {
+          label: "Reply · Responder",
+          href: mailto(payload.email, `Re: ${subject}`),
+        },
+      ],
+      footer: `Sent from the contact form on the ${brand.name} website. · Enviado desde el formulario de contacto del sitio web de ${brand.name}.`,
+    }),
     disableFileAccess: true,
     disableUrlAccess: true,
   };
@@ -87,10 +115,14 @@ export function buildApplicationEmail(
   // The attachment name is rebuilt from the validated name; the uploaded file name is never used.
   const slug = payload.name
     .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
+    .replace(/\p{M}/gu, "")
     .replace(/[^A-Za-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")
     .slice(0, 60);
+  const filename = `CV-${slug || "applicant"}.${cv.extension}`;
+  const area = `${careersDictionary("en").positions[payload.position]} / ${careersDictionary("es").positions[payload.position]}`;
+  const place = location?.name || "Any / Cualquiera";
+  const tel = `tel:${payload.phone.replace(/[^\d+]/g, "")}`;
   return {
     from: { name: brand.name, address: config.from },
     to: config.to,
@@ -102,19 +134,53 @@ export function buildApplicationEmail(
       `Name / Nombre: ${payload.name}`,
       `Email / Correo: ${payload.email}`,
       `Phone / Teléfono: ${payload.phone}`,
-      `Area / Área: ${careersDictionary("en").positions[payload.position]} / ${careersDictionary("es").positions[payload.position]}`,
-      `Location / Sucursal: ${location?.name || "Any / Cualquiera"}`,
+      `Area / Área: ${area}`,
+      `Location / Sucursal: ${place}`,
       `Language / Idioma: ${payload.locale}`,
       "Application consent / Consentimiento de solicitud: yes / sí",
       "",
       payload.message,
     ].join("\n"),
-    attachments: [
-      {
-        filename: `CV-${slug || "applicant"}.${cv.extension}`,
-        content: cv.content,
-        contentType: cv.type,
+    html: emailHtml({
+      preheader: `${payload.name} · ${area} · ${place}`,
+      eyebrow: "New job application · Nueva solicitud de empleo",
+      title: payload.name,
+      rows: [
+        {
+          label: "Email · Correo",
+          value: payload.email,
+          href: mailto(payload.email),
+        },
+        { label: "Phone · Teléfono", value: payload.phone, href: tel },
+        { label: "Area · Área", value: area },
+        { label: "Preferred location · Sucursal", value: place },
+        {
+          label: "Language · Idioma",
+          value: payload.locale === "es" ? "Español" : "English",
+        },
+        { label: "Consent · Consentimiento", value: "Yes · Sí" },
+      ],
+      message: {
+        label: "Experience and availability · Experiencia y disponibilidad",
+        text: payload.message,
       },
+      note: `CV attached · CV adjunto: ${filename}`,
+      actions: [
+        {
+          label: "Reply · Responder",
+          href: mailto(
+            payload.email,
+            payload.locale === "es"
+              ? `Tu solicitud en ${brand.name}`
+              : `Your application at ${brand.name}`,
+          ),
+        },
+        { label: "Call · Llamar", href: tel },
+      ],
+      footer: `Sent from the ${brand.name} careers form. It contains personal data: share it only with the hiring team. · Enviado desde el formulario de empleo de ${brand.name}. Contiene datos personales: compártelo solo con el equipo de selección.`,
+    }),
+    attachments: [
+      { filename, content: cv.content, contentType: cv.type },
     ],
     disableFileAccess: true,
     disableUrlAccess: true,

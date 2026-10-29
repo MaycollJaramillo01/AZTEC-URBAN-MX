@@ -99,6 +99,7 @@ test("contact email uses a fixed destination/from and puts the visitor only in R
     address: payload.email,
   });
   assert.ok(String(mail.text).includes("2127 S. Broadway"));
+  assert.match(String(mail.html), /Website message[\s\S]*2127 S\. Broadway/);
   // Nodemailer builds an actual MIME message in memory; it cannot contact any mailbox.
   const transport = nodemailer.createTransport({
     streamTransport: true,
